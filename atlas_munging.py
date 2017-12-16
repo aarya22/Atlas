@@ -13,7 +13,7 @@ import sys
 # In[3]:
 region = sys.argv[1]
 
-DATA_PATH = os.getcwd()+"tracks/"+str(region)
+DATA_PATH = os.getcwd()+"/tracks/"+str(region)
 
 import os
 import os.path as op
