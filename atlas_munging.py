@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # In[1]:
-
+import os
 import numpy as np
 import dipy.tracking.utils as dtu
 import pandas as pd
@@ -13,7 +13,7 @@ import sys
 # In[3]:
 region = sys.argv[1]
 
-DATA_PATH = "/Users/aarya/Atlas/tracks/"+str(region)
+DATA_PATH = os.getcwd()+"tracks/"+str(region)
 
 import os
 import os.path as op
