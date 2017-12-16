@@ -3,14 +3,10 @@
 
 # In[1]:
 
-import matplotlib as mpl
-from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
-import matplotlib.pyplot as plt
 import dipy.tracking.utils as dtu
 import pandas as pd
 import nibabel as nib
-#get_ipython().magic(u'matplotlib inline')
 import sys
 
 
@@ -27,13 +23,11 @@ from glob import glob
 # In[19]:
 
 labels = [f for f in os.listdir(DATA_PATH) if not f.startswith('.')]
-#len(labels)
 
 
 # In[5]:
 
 bundle_fnames = glob(op.join(DATA_PATH, '*.trk'))
-#bundle_fnames[0]
 
 
 # In[7]:
@@ -73,7 +67,6 @@ for b_idx, bundle in enumerate(bundle_fnames):
             bname = get_bname(bundle)
             savepath = newpath+"/"+bname+'-'+str(sl_idx)
             if not np.mod(sl_idx, 100):
-                #print("Streamline {0} at index {1}".format(sl_idx, ii))
                 print("Streamline {0} at index {1} of Bundle {2} saved at path {3}".format(sl_idx, ii, bname, savepath))
             vol = np.zeros(t1_shape + (1,), dtype=bool)
             sl = np.round(sl).astype(int).T
@@ -98,12 +91,6 @@ def get_dataframe(directory):
     paths = [os.path.join(directory, f) for f in os.listdir(directory) if not f.startswith('.')]
     labels = [get_label(path) for path in paths if not path.startswith('.')]
     return pd.DataFrame({'paths': paths, 'labels': labels})
-d = get_dataframe(newpath)
-d.head()
-
-
-# In[18]:
-
 
 
 
