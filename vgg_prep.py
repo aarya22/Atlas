@@ -7,7 +7,7 @@ def get_label(path):
     return x
 
 region = sys.argv[1]
-SL_PATH = "/Users/aarya/Atlas/tracks/"+str(region)+"/slines"
+SL_PATH = os.getcwd()+"/tracks/"+str(region)+"/slines"
 labels = [get_label(f) for f in os.listdir(SL_PATH) if not f.startswith('.')]
 
 paths = [os.path.join(SL_PATH, f) for f in os.listdir(SL_PATH) if not f.startswith('.')]
