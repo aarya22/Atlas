@@ -1,13 +1,14 @@
 import numpy as np
 import sys
-import os
 from sklearn.cross_validation import train_test_split
 import keras.models as km
 from keras.layers import (Convolution2D, MaxPooling2D, Convolution3D,
-                          MaxPooling3D, Flatten, Dense, Input, UpSampling2D,
-                          UpSampling3D)
+                          MaxPooling3D, Flatten, Dense, Input)
+import os
+
+os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
+
 region = sys.argv[1]
-9
 print("Beginning VGG16 with " + str(region))
 print('\n')
 
@@ -115,6 +116,12 @@ model = vgg16(img_x = X.shape[1], img_y = X.shape[2], n_classes=len(ids))
 
 print('\n')
 
+print("Model compiling with SGD and MSE")
+
+model.compile(loss='mean_squared_error', optimizer='sgd')
+
+print('\n')
+
 print("Beginning training")
 
 model.fit(x=X_train, y=y_train, shuffle=True, verbose=2)
@@ -122,7 +129,6 @@ model.fit(x=X_train, y=y_train, shuffle=True, verbose=2)
 print('\n')
 
 print("Beginning Evaluation")
-
 
 model.evaluate(x=X_valid, y=y_valid, verbose=1)
 
